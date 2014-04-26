@@ -1,0 +1,7 @@
+Get all the dependencies that that playground requeres as well. 
+
+git clone this
+
+go build 
+
+./wearscript-server
