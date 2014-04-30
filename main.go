@@ -7,7 +7,7 @@ import (
     "code.google.com/p/google-api-go-client/oauth2/v2"
     "encoding/json"
     "fmt"
-    //"github.com/gorilla/pat"
+    "github.com/gorilla/pat"
     //"html/template"
     //"io/ioutil"
     "log"
@@ -229,7 +229,7 @@ func main() {
     //    log.Fatal("SignatureCreateKey: Is the Redis database running?: ", err)
     //    return
     //}
-    //m := pat.New()
+    m := pat.New()
     //m.Get("/static/{path}", http.HandlerFunc(StaticServer))
     //m.Post("/setup", http.HandlerFunc(SetupHandler))
     //m.Post("/user/key/{type}", http.HandlerFunc(SecretKeySetupHandler))
@@ -239,17 +239,17 @@ func main() {
     //m.Get("/oauth2callbackgh", http.HandlerFunc(Oauth2callbackHandlerGH))
 
     // Control flow is: /auth -> google -> /oauth2callback
-    //m.Get("/auth", http.HandlerFunc(authHandler))
-    //m.Get("/oauth2callback", http.HandlerFunc(oauth2callbackHandler))
+    m.Get("/auth", http.HandlerFunc(authHandler))
+    m.Get("/oauth2callback", http.HandlerFunc(oauth2callbackHandler))
 
     //m.Get("/signout", http.HandlerFunc(signoutHandler))
     //m.Post("/signout", http.HandlerFunc(signoutHandler))
     //m.Post("/signature", http.HandlerFunc(SignatureVerifyHandler))
-    //m.Get("/example", ExampleServer)
+    m.Get("/example", ExampleServer)
     http.Handle("/ws", websocket.Handler(WSHandler))
     http.Handle("/ws/", websocket.Handler(WSHandler))
-    //m.Get("/", noDirListing(http.FileServer(http.Dir("www"))))
-    //http.Handle("/", m)
+    m.Get("/", noDirListing(http.FileServer(http.Dir("www"))))
+    http.Handle("/", m)
     err := http.ListenAndServe(":"+servePort, nil)
     if err != nil {
         log.Fatal("ListenAndServe: ", err)
