@@ -242,8 +242,8 @@ func main() {
     m.Get("/auth", http.HandlerFunc(authHandler))
     m.Get("/oauth2callback", http.HandlerFunc(oauth2callbackHandler))
 
-    //m.Get("/signout", http.HandlerFunc(signoutHandler))
-    //m.Post("/signout", http.HandlerFunc(signoutHandler))
+    m.Get("/signout", http.HandlerFunc(signoutHandler))
+    m.Post("/signout", http.HandlerFunc(signoutHandler))
     //m.Post("/signature", http.HandlerFunc(SignatureVerifyHandler))
     m.Get("/example", ExampleServer)
     http.Handle("/ws", websocket.Handler(WSHandler))
