@@ -5,7 +5,7 @@
 <script src="./js/wearscript-client.js"></script>
 </head>
 <body><script>
-var URL = "ws://ec2-54-86-82-79.compute-1.amazonaws.com:8081/ws"; 
+var URL = "ws://ec2-54-84-151-229.compute-1.amazonaws.com:8081/ws"; 
 var ws = new WearScriptConnection(new WebSocket(URL), "client", "demo");
 ws.subscribe('image', function (chan, timestamp, image) {
     console.log(JSON.stringify({chan: chan, timestamp: timestamp, image: btoa(image)}));
